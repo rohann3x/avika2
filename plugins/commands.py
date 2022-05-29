@@ -55,17 +55,19 @@ async def start(client, message):
             parse_mode='html'
         )
         return
-    AUTH_CHANNEL=["https://telegra.ph/file/b2acb2586995d0e107760.jpg"]
+     if AUTH_CHANNEL=["https://telegra.ph/file/b2acb2586995d0e107760.jpg"]
         invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
         button=[[
          InlineKeyboardButton("🔔 SUBSCRIBE 🔔", url=invite_link.invite_link)
          ]]
-        reply_markup = InlineKeyboardMarkup(button)
-        await message.reply_photo(
-            photo=random.choice(AUTH_CHANNEL),
-            caption=f"""<i><b>Hello {message.from_user.mention}. \nYou Have <a href="{invite_link.invite_link}">Not Subscribed</a> To <a href="{invite_link.invite_link}">My Update Channel</a>.So you do not get the Files on Inline Mode, Bot Pm and Group</i></b>""",
-            reply_markup=reply_markup
-        )
+        if message.command[1] != "subscribe":
+            btn.append([InlineKeyboardButton("🔁 𝐓𝐫𝐲 𝐀𝐠𝐚𝐢𝐧 🔁", callback_data=f"checksub#{message.command[1]}")])
+        await client.send_message(
+            chat_id=message.from_user.id,
+            text="**𝑱𝒐𝒊𝒏 𝑶𝒖𝒓 𝑴𝒐𝒗𝒊𝒆 𝑼𝒑𝒅𝒂𝒕𝒆𝒔 𝑪𝒉𝒂𝒏𝒏𝒆𝒍 𝑻𝒐 𝑼𝒔𝒆 𝑻𝒉𝒊𝒔 𝑩𝒐𝒕!**",
+            reply_markup=InlineKeyboardMarkup(btn),
+            parse_mode="markdown"
+            )
         return
     if len(message.command) ==2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
