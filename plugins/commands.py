@@ -56,27 +56,85 @@ async def start(client, message):
         )
         return
     if AUTH_CHANNEL and not await is_subscribed(client, message):
-        try:
-            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
-        except ChatAdminRequired:
-            logger.error("Make sure Bot is admin in Forcesub channel")
-            return
-        btn = [
-            [
-                InlineKeyboardButton(
-                    "📢 Join Channel 📢", url=invite_link.invite_link
+       if AUTH_CHANNEL:
+            invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
+            try:
+                user = await bot.get_chat_member(int(AUTH_CHANNEL), message.from_user.id)
+                if user.status == "kicked":
+                    await bot.send_message(
+                        chat_id=message.from_user.id,
+                        text="Sorry Sir, You are Banned to use me.",
+                        parse_mode="markdown",
+                        disable_web_page_preview=True
+                    )
+                    return
+            except UserNotParticipant:
+                ident, file_id = message.text.split("_-_-_-_")
+                await bot.send_message(
+                    chat_id=message.from_user.id,
+                    text="**Please Join My Updates Channel to use this Bot!**",
+                    reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton("📢 Join Updates Channel 📢", url=invite_link.invite_link)
+                            ],
+                            [
+                                InlineKeyboardButton("🔄 Try Again", callback_data=f"checksub#{file_id}")
+                            ]
+                        ]
+                    ),
+                    parse_mode="markdown"
                 )
-            ]
-        ]
-
-        if message.command[1] != "subscribe":
-            btn.append([InlineKeyboardButton("🔁 Try Again 🔁", callback_data=f"checksub#{message.command[1]}")])
-        await client.send_message(
+                return
+            except Exception:
+                await bot.send_message(
+                    chat_id=message.from_user.id,
+                    text="Something went Wrong.",
+                    parse_mode="markdown",
+                    disable_web_page_preview=True
+                )
+                return
+        try:
+            ident, file_id = message.text.split("_-_-_-_")
+            filedetails = await get_file_details(file_id)
+            for files in filedetails:
+                title = files.file_name
+                size=files.file_size
+                f_caption=files.caption
+                if CUSTOM_FILE_CAPTION:
+                    try:
+                        f_caption=CUSTOM_FILE_CAPTION.format(file_name=title, file_size=size, file_caption=f_caption)
+                    except Exception as e:
+                        print(e)
+                        f_caption=f_caption
+                if f_caption is None:
+                    f_caption = f"{files.file_name}"
+                buttons = [
+                    [
+                        InlineKeyboardButton('Join Now ', url='https://t.me/Mcadda')
+                    ]
+                    ]
+                await bot.send_cached_media(
+                    chat_id=message.from_user.id,
+                    file_id=file_id,
+                    caption=f_caption,
+                    reply_markup=InlineKeyboardMarkup(buttons)
+                    )
+        except Exception as err:
+            await message.reply_text(f"Something went wrong!\n\n**Error:** `{err}`")
+    elif len(message.command) > 1 and message.command[1] == 'subscribe':
+        invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
+        await bot.send_message(
             chat_id=message.from_user.id,
-            text="**𝑱𝒐𝒊𝒏 𝑶𝒖𝒓 𝑴𝒐𝒗𝒊𝒆 𝑼𝒑𝒅𝒂𝒕𝒆𝒔 𝑪𝒉𝒂𝒏𝒏𝒆𝒍 𝑻𝒐 𝑼𝒔𝒆 𝑻𝒉𝒊𝒔 𝑩𝒐𝒕!**",
-            reply_markup=InlineKeyboardMarkup(btn),
-            parse_mode="markdown"
+            text="**Please Join My Updates Channel to use this Bot!**",
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("📢 Join Updates Channel 📢", url=invite_link.invite_link)
+                    ]
+                ]
             )
+        )
         return
     if len(message.command) ==2 and message.command[1] in ["subscribe", "error", "okay", "help"]:
         buttons = [[
