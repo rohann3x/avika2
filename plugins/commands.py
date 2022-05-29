@@ -55,11 +55,20 @@ async def start(client, message):
             parse_mode='html'
         )
         return
-     if AUTH_CHANNEL=["https://telegra.ph/file/b2acb2586995d0e107760.jpg"]
-        invite_link = await bot.create_chat_invite_link(int(AUTH_CHANNEL))
-        button=[[
-         InlineKeyboardButton("🔔 SUBSCRIBE 🔔", url=invite_link.invite_link)
-         ]]
+     if AUTH_CHANNEL and not await is_subscribed(client, message):
+        try:
+            invite_link = await client.create_chat_invite_link(int(AUTH_CHANNEL))
+        except ChatAdminRequired:
+            logger.error("Make sure Bot is admin in Forcesub channel")
+            return
+        btn = [
+            [
+                InlineKeyboardButton(
+                    "🔥 JOIИ CHΛИИΞL 🔥", url=invite_link.invite_link
+                )
+            ]
+        ]
+
         if message.command[1] != "subscribe":
             btn.append([InlineKeyboardButton("🔁 𝐓𝐫𝐲 𝐀𝐠𝐚𝐢𝐧 🔁", callback_data=f"checksub#{message.command[1]}")])
         await client.send_message(
