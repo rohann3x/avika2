@@ -1,11 +1,5 @@
 class script(object):
-    START_TXT = """Hiii!! 🤩
-
-🍿Welcome to the largest movies and series database on net!
-
-Inline Search DISABLED 🚫
-
-Press /help for Pm Search Tutorial
+    START_TXT =
 
     HELP_TXT = """𝙷𝙴𝚈 {}
 𝙷𝙴𝚁𝙴 𝙸𝚂 𝙼𝚈 𝙷𝙴𝙻𝙿 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
