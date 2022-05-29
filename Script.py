@@ -1,9 +1,12 @@
 class script(object):
     START_TXT = """Hiii!! 🤩 🍿Welcome to the largest movies and series database on net!Inline Search DISABLED 🚫 Press /help for Pm Search Tutorial"""
     HELP_TXT = """𝙷𝙴𝚈 {}𝙷𝙴𝚁𝙴 𝙸𝚂 𝙼𝚈 𝙷𝙴𝙻𝙿 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
-    ABOUT_TXT = """<a href=https://t.me/MCAdda>ℹ️ Powered by MOVIE COFFEE</a></b>"""
-    DONATION_TXT = """<b>𝐃𝐨𝐧𝐚𝐭𝐢𝐨𝐧 & 𝐏𝐚𝐢𝐝 𝐏𝐫𝐨𝐦𝐨𝐭𝐢𝐨𝐧</b> 
+    ABOUT_TXT = """<a href=https://t.me/MCAdda>ℹ️ **Powered by MOVIE COFFEE**</a></b>""" 
+    SOURCE_TXT = """<b>DISCLAIMER!!
+It is forbidden to download, stream, reproduce, or by any means, share, or consume, content without explicit permission from the content creator or legal copyright holder.. If you believe this bot is violating your intellectual property, contact the respective channels for removal.
+The Bot does not own any of these contents, it only index the files from telegram."""
 
+    DONATION_TXT = """<b>𝐃𝐨𝐧𝐚𝐭𝐢𝐨𝐧 & 𝐏𝐚𝐢𝐝 𝐏𝐫𝐨𝐦𝐨𝐭𝐢𝐨𝐧</b>
 ›› <b>𝐃𝐨𝐧𝐚𝐭𝐢𝐨𝐧</b>
 
 ⪼ <b>𝐘𝐨𝐮 𝐂𝐚𝐧 𝐃𝐨𝐧𝐚𝐭𝐞 𝐀𝐧𝐲 𝐀𝐦𝐨𝐮𝐧𝐭 𝐘𝐨𝐮 𝐇𝐚𝐯𝐞 💳. 
