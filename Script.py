@@ -1,8 +1,7 @@
 class script(object):
-    START_TXT = Hiii!! 🤩
-
-🍿Welcome to the largest movies and series database on net!Inline Search DISABLED 🚫 Press /help for Pm Search Tutorial
-    HELP_TXT = """𝙷𝙴𝚈 {}
+    START_TXT = Hiii!! 🤩 🍿Welcome to the largest movies and series database on net!Inline Search DISABLED 🚫 Press /help for Pm Search Tutorial
+    
+     HELP_TXT = """𝙷𝙴𝚈 {}
 𝙷𝙴𝚁𝙴 𝙸𝚂 𝙼𝚈 𝙷𝙴𝙻𝙿 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
     ABOUT_TXT = """<b>✮ 𝙼𝚈 𝙽𝙰𝙼𝙴: 𝙰𝙹𝙰𝚇-𝙿𝚁𝙾-𝙼𝙰𝚇</b>
 <b>✮ 𝙲𝚁𝙴𝙰𝚃𝙾𝚁: <a href=https://t.me/AboutAadhi>𝙰𝙰𝙳𝙷𝙸</a></b>
