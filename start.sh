@@ -1,12 +1,12 @@
 if [ -z $UPSTREAM_REPO ]
 then
   echo "Cloning main Repository"
-  git clone https://github.com/rohann3x/avika2.git /Ajax
+  git clone https://github.com/rohann3x/avika2.git /EvaMaria
 else
   echo "Cloning Custom Repo from $UPSTREAM_REPO "
-  git clone $UPSTREAM_REPO /Ajax
+  git clone $UPSTREAM_REPO /EvaMaria
 fi
-cd /Ajax
+cd /EvaMaria
 pip3 install -U -r requirements.txt
 echo "Starting Avika....✅"
 python3 bot.py
